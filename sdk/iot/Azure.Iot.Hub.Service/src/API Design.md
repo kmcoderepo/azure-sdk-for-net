@@ -83,6 +83,14 @@ public class Devices
     public virtual Response Delete(string deviceId, string ifMatch = null, CancellationToken cancellationToken = default)
 
 	/// <summary>
+	/// Create multiple devices.
+	/// </summary>
+	/// <param name="devices">The devices to create.</param>
+	/// <param name="cancellationToken">The cancellation token.</param>
+	/// <returns>The result of the bulk operation.</returns>
+	public virtual Response<BulkRegistryOperationResult> Create(IEnumerable<DeviceIdentity> devices, CancellationToken cancellationToken = default)
+
+    /// <summary>
 	/// Create multiple devices with an initial twin.
 	/// </summary>
 	/// <param name="devices">The pairs of devices their twins that will be created. For fields such as deviceId
@@ -90,14 +98,6 @@ public class Devices
 	/// <param name="cancellationToken">The cancellation token.</param>
 	/// <returns>The result of the bulk operation.</returns>
 	public BulkRegistryOperationResult CreateWithTwin(Dictionary<DeviceIdentity, TwinData> devices, CancellationToken cancellationToken = default)
-
-	/// <summary>
-	/// Create multiple devices.
-	/// </summary>
-	/// <param name="devices">The devices to create.</param>
-	/// <param name="cancellationToken">The cancellation token.</param>
-	/// <returns>The result of the bulk operation.</returns>
-	public virtual Response<BulkRegistryOperationResult> Create(IEnumerable<DeviceIdentity> devices, CancellationToken cancellationToken = default)
 
 	/// <summary>
 	/// Update multiple devices.
