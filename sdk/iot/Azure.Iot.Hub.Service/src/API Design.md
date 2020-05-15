@@ -45,44 +45,42 @@ APIs for managing device identities, device twins, and querying devices
 public class Devices
 {
 	/// <summary>
-	/// Create or update a device.
-	/// </summary>
-	/// <param name="deviceId">The unique identifier of the device to create.</param>
-	/// <param name="device">The device to create or update.</param>
-	/// <param name="ifMatch">A string representing a weak ETag for this device, as per RFC7232. The update operation is performed
-	/// only if this ETag matches the value maintained by the server, indicating that the device has not been modified since it was last retrieved.
-	/// To force an unconditional update, set If-Match to the wildcard character (*). For create operations, this value must be null.</param>
-	/// <param name="cancellationToken">The cancellation token.</param>
-	/// <returns>The created or updated device.</returns>
-	public virtual Response<DeviceIdentity> CreateOrUpdate(string deviceId, DeviceIdentity device, string ifMatch = null, CancellationToken cancellationToken = default)
-
+    /// Create a device.
+    /// </summary>
+    /// <param name="device">The device to create.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>The created device.</returns>
+    public virtual Response<DeviceIdentity> Create(DeviceIdentity device, CancellationToken cancellationToken = default)
+		
 	/// <summary>
-	/// List devices. This API does not support paging.
-	/// This is deprecated by the service, but there isn't a 1:1 replacement for it. Query returns twins, not devices.
-	/// </summary>
-	/// <param name="top">The max number of devices to list.</param>
-	/// <param name="cancellationToken">The cancellation token.</param>
-	/// <returns>The list of devices retrieved.</returns>
-	public virtual Response<IReadOnlyList<DeviceIdentity>> List(int? top = null, CancellationToken cancellationToken = default)
+    /// Update a device.
+    /// </summary>
+    /// <param name="device">The device to update.</param>
+    /// <param name="ifMatch">A string representing a weak ETag for this device, as per RFC7232. The update operation is performed
+    /// only if this ETag matches the value maintained by the server, indicating that the device has not been modified since it was last retrieved.
+	/// The current ETag can be retrieved from the device identity last retrieved from the service. To force an unconditional update, set If-Match to the wildcard character (*).</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>The created or updated device.</returns>
+    public virtual Response<DeviceIdentity> Update(DeviceIdentity device, string ifMatch = null, CancellationToken cancellationToken = default)
 
-	/// <summary>
-	/// Get a single device.
-	/// </summary>
-	/// <param name="deviceId">The unique identifier of the device to get.</param>
-	/// <param name="cancellationToken">The cancellation token.</param>
-	/// <returns>The retrieved device.</returns>
-	public virtual Response<DeviceIdentity> Get(string deviceId, CancellationToken cancellationToken = default)
+    /// <summary>
+    /// Get a single device.
+    /// </summary>
+    /// <param name="deviceId">The unique identifier of the device to get.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>The retrieved device.</returns>
+    public virtual Response<DeviceIdentity> Get(string deviceId, CancellationToken cancellationToken = default)
 
-	/// <summary>
-	/// Delete a single device.
-	/// </summary>
-	/// <param name="deviceId">The unique identifier of the device to delete.</param>
-	/// <param name="ifMatch">A string representing a weak ETag for this device, as per RFC7232. The delete operation is performed
-	/// only if this ETag matches the value maintained by the server, indicating that the device has not been modified since it was last retrieved.
-	/// To force an unconditional delete, set If-Match to the wildcard character (*).</param>
-	/// <param name="cancellationToken">The cancellation token.</param>
-	/// <returns>The http response.</returns>
-	public virtual Response Delete(string deviceId, string ifMatch = "*", CancellationToken cancellationToken = default)
+    /// <summary>
+    /// Delete a single device.
+    /// </summary>
+    /// <param name="deviceId">The unique identifier of the device to delete.</param>
+    /// <param name="ifMatch">A string representing a weak ETag for this device, as per RFC7232. The delete operation is performed
+    /// only if this ETag matches the value maintained by the server, indicating that the device has not been modified since it was last retrieved.
+	/// The current ETag can be retrieved from the device identity last retrieved from the service. To force an unconditional delete, set If-Match to the wildcard character (*).</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>The http response.</returns>
+    public virtual Response Delete(string deviceId, string ifMatch = null, CancellationToken cancellationToken = default)
 
 	/// <summary>
 	/// Create multiple devices with an initial twin.
